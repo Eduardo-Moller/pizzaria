@@ -1,0 +1,79 @@
+body{
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+.listaVermelha{
+    background-color: #C5453F;
+    height: 3vw;
+}
+.row-login{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.btn-login{
+    outline: none;
+    letter-spacing: 3px;
+    background: #C5453F;
+    background-color: #C5453F;
+    width: 50%;
+    height: 4vw;
+    border: none;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #fff;
+    box-shadow: 0px 14px 40px -8px #D92E1E;
+}
+.btn-cadastro{
+    font-weight: bold;
+    outline: none;
+    letter-spacing: 3px;
+    background: #F3F1F3;
+    background-color: #F3F1F3;
+    width: 50%;
+    height: 4vw;
+    border: none;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #C5453F;
+    box-shadow: 0px 14px 40px -8px #9BACD8;
+}
+.btn-cadastro a{
+    color: #C5453F;
+    text-decoration: none;
+}
+.btn-login a{
+    color: #fff;
+    text-decoration: none;
+}
+.logo-size{
+    width: 15%;
+}
+.sombra{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.escpaco{
+    margin-top: 21%;
+}
+@media (max-width: 500px)
+{
+    .escpaco{
+        margin-top: 5%;
+    }
+    .logo-size{
+        width: 50%;
+    }
+    .btn-login{
+        height: 10vw;
+    }
+    .btn-cadastro{
+        height: 10vw;
+        width: 60%;
+    }
+    .row-login{
+        height: 100vw;
+    }
+}
