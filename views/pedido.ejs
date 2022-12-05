@@ -1,72 +1,71 @@
 <%- include('templates/header'); -%>
 <body class="bgg">
     <%- include('templates/nav'); -%>
-
-    <div class="container h-100">
-        <div class="row">
-            <img src="" alt="">
-        </div>
-        <div class="row text-center">
+    <div class="teste">
+        <p><%= bordas[0].tipo %></p>
+    </div>
+    <div class="container">
+        <form class="row text-center" action="/pizza/insere" method="POST">
             <h1 class="fs-1 text-white pt-5">Faça seu pedido já</h1>
             <div class="col-12 mt-5">
-                <select class="form-select w-50 mx-auto m-5 mb-5 p-3" aria-label="Default select example">
-                    <option selected>Massa</option>
-                    <option value="1">Massa comum</option>
-                    <option value="2">Massa integral</option>
-                    <option value="3">Massa temperada</option>
+                <select class="form-select w-50 mx-auto m-5 mb-5 p-3" name="massa">
+                    <option selected value="0">Massa</option>
+                    <% for (var i=0; i < massas.length; i++) { %>
+                        <option value="<%= massas[i].idMassas %>"><%= massas[i].tipo %></option>
+                    <% } %>
                 </select>
-                <select class="form-select w-50 mx-auto mt-5 p-3" aria-label="Default select example">
-                    <option selected>Borda</option>
-                    <option value="1">Cheddar</option>
-                    <option value="2">Catupiry</option>
-                    <option value="3">Chocolate</option>
-                </select>
-                <select class="form-select w-50 mx-auto mt-5 mb-5 p-3" aria-label="Default select example">
-                    <option selected>Sabores</option>
-                    <option value="1">4 Queijos</option>
-                    <option value="2">Frango com Catupiry</option>
-                    <option value="3">Calabresa</option>
-                    <option value="5">Lombinho;</option>
-                    <option value="6">Filé com Cheddar</option>
-                    <option value="7">Portuguesa</option>
-                    <option value="8">Margherita</option>
+
+                <select class="form-select w-50 mx-auto mt-5 p-3" name="borda">
+                    <option selected value="0">Borda</option>
+                    <% for (var i=0; i < bordas.length; i++) { %>
+                        <option value="<%= bordas[i].idBordas %>"><%= bordas[i].tipo %></option>
+                    <% } %>
                 </select>
                 
-            </div>
-            <div class="col-12 pt-5">
-                <a href="/endereco"><button type="button" class="btn btn-dark px-5 p-3 mt-5">Próximo</button></a>
-            </div>
+                <select class="form-select w-50 mx-auto mt-5 mb-5 p-3" name="sabor" id="sabor" multiple>
+                    <% for (var i=0; i < sabores.length; i++) { %>
+                        <option value="<%= sabores[i].idSabores %>"><%= sabores[i].nome %></option>
+                    <% } %>
+                </select>
 
-            <!-- <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">4 Queijos</label>
+                <!-- <select class="form-select w-50 mx-auto mt-5 mb-5 p-3" name="sabor2">
+                    <option selected value="0">Segundo sabor</option>
+                    <% for (var i=0; i < sabores.length; i++) { %>
+                        <option value="<%= sabores[i].idSabores %>"><%= sabores[i].nome %></option>
+                    <% } %>
+                </select>
+
+                <select class="form-select w-50 mx-auto mt-5 mb-4 p-3" name="sabor3">
+                    <option selected value="0">Terceiro sabor</option>
+                    <% for (var i=0; i < sabores.length; i++) { %>
+                        <option value="<%= sabores[i].idSabores %>"><%= sabores[i].nome %></option>
+                    <% } %>
+                </select> -->
+                
             </div>
-            <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">Frango com Catupiry</label>
+            <div class="col-12">
+                <button type="submit" class="btn btn-dark px-5 p-3 mt-5">Pedir</button>
             </div>
-            <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">Calabresa</label>
-            </div>
-            <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">Lombinho</label>
-            </div>
-            <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">Filé com Cheddar</label>
-            </div>
-            <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">Portuguesa</label>
-            </div>
-            <div class="col-12 text-center custom-control custom-radio">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="custom-control-label" th:for="some id">Margherita</label>
-            </div> -->
-        </div>
+        </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
 
+    <script>
+        $(document).ready(function() {
+
+        var last_valid_selection = null;
+
+            $('#sabor').change(function(event) {
+
+                if ($(this).val().length > 3) {
+
+                    $(this).val(last_valid_selection);
+                } else {
+                    last_valid_selection = $(this).val();
+                }
+            });
+            });
+    </script>
 </body>
 </html>

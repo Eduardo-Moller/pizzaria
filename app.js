@@ -6,6 +6,8 @@ var logger = require('morgan');
 const bcrypt = require("bcrypt");
 const session = require('express-session');
 var indexRouter = require('./routes/index');
+var pizzaRouter = require('./routes/pizzaRoutes');
+var usuarioRouter = require('./routes/usuarioRoutes');
 
 
 var app = express();
@@ -21,6 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/pizza', pizzaRouter);
+app.use('/usuario', usuarioRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));

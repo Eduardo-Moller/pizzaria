@@ -48,6 +48,9 @@
 }
 @media (max-width: 500px)
 {
+    .textoo{
+        font-size: 1vw;
+    }
    .logo{
         width: 20vw;
    }

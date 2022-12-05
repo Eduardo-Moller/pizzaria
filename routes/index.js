@@ -1,64 +1,49 @@
-var express = require('express');
+var express = require("express");
 const userController = require("../controllers/userController");
+const pizzaController = require("../controllers/pizzaController");
 var router = express.Router();
 
-/* GET home page. */
-
-router.get('/', /*userController.loginVerifica,*/ function(req, res, next) {
-  res.render('home');
+router.get("/", userController.loginVerifica, async (req, res, next) => {
+  var adm = await userController.vericaAdm(req.session.login.id);
+  res.render("home", adm[0]);
 });
 
-router.get('/pedido', function(req, res, next) {
-  res.render('pedido');
+router.get("/pedido", userController.loginVerifica, async (req, res, next) => {
+  var verifica = await userController.vericaEndereco(req.session.login.id);
+  if (verifica == false) {
+    res.redirect("/endereco");
+  }
+  data = await pizzaController.pizzaDados();
+  console.log(data)
+  res.render("pedido", data);
 });
 
-router.get('/endereco', function(req, res, next) {
-  res.render('endereco');
+router.get("/endereco", userController.loginVerifica, function (req, res, next) {
+    res.render("endereco");
 });
 
-
-//USER ROUTES
-
-router.get('/select', function(req, res, next) {
-  res.render('select');
-});
-
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
-
-router.get('/cadastro', function(req, res, next) {
-  res.render('cadastro');
-});
-
-router.post("/login", async (req, res, next) => {
-  email = req.body.email;
-  senha = req.body.senha;
-  var UserArray = [email, senha];
-  usuario = await userController.login(UserArray);
-  console.log(usuario);
-  if (typeof(usuario)=='object') {
-    req.session.login = usuario;
-    console.log(req.session.login);
-    res.redirect('/home')
-  } else {
-    res.redirect('/login')
+router.get("/admin", userController.loginVerifica, async (req, res, next) => {
+  var adm = await userController.vericaAdm(req.session.login.id);
+  if(adm[0].admim == 1){
+    var lista = await pizzaController.listaPizza();
+    var dados = {lista:lista}
+    console.log(dados)
+    res.render("admin", dados);
+  }else{
+    res.redirect("/")
   }
 });
-router.post("/registro", async (req, res, next) => {
-  nome = req.body.nome;
-  email = req.body.email;
-  senha = req.body.senha;
-  console.log(nome);
-  if(nome=="" || email=="" || senha==""){
-    res.redirect('/cadastro')
-  }
-  var usuarioArray = [nome, email, senha];
-  usuario = await userController.registro(usuarioArray);
-  if(typeof(usuario)=='object'){
-    req.session.login = usuario;
-    res.redirect('/home')
-  }
+
+router.get("/select", function (req, res, next) {
+  res.render("select");
+});
+
+router.get("/login", function (req, res, next) {
+  res.render("login");
+});
+
+router.get("/cadastro", function (req, res, next) {
+  res.render("cadastro");
 });
 
 module.exports = router;
