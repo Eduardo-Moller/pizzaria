@@ -2,7 +2,6 @@
 <body class="bgg">
     <%- include('templates/nav'); -%>
     
-
     <div class="container">
         <h1 class="text-white fs-1 text-center pt-3">Painel Admin</h1>
         <div class="row">
@@ -22,11 +21,22 @@
                     <tbody>
                         <% for (var i=0; i < lista.length; i++) { %>
                       <tr>
-                        <th scope="row"><button type="button" class="btn btn-danger textoo" value="<%= lista[0].id %>" onclick="apagar(this.value)">Apagar</button></th>
+                        <th scope="row"><button type="button" class="btn btn-danger textoo" value="<%= lista[i].id %>" onclick="apagar(this.value)">Apagar</button></th>
                         <td><%= lista[i].nomeCliente %></td>
                         <td><%= lista[i].massas %></td>
                         <td><%= lista[i].bordas %></td>
-                        <td>SABORES</td>
+                        
+                        <% var stringSabor = JSON.stringify(lista[i].sabores) 
+                        const words1 = stringSabor.replaceAll('[{"nome":"', '');
+                        const words2 = words1.replaceAll('[', '');
+                        const words3 = words2.replaceAll(']', '');
+                        const words4 = words3.replace('"}]', '');
+                        const words5 = words4.replace('"}]', '');
+                        const words6 = words5.replaceAll('"}', '');
+                        const saborNomes = words6.replace('"}]]', '');
+                        %>
+                        
+                        <td><%= saborNomes %></td>
                         <td><%= lista[i].status %></td>
                         <td>
                             <select name="status" id="<%= lista[i].id %>" onchange="alterarStatus(this.id)">

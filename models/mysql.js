@@ -21,11 +21,11 @@ async function connect() {
         return pool;
     }
     pool = await mysql.createPool({
-        host: 'localhost',
-        port: 3306,
+        host: 'containers-us-west-145.railway.app',
+        port: 8034,
         user: 'root',
-        password: 'GhY67GJ8',
-        database: 'pizza2',
+        password: 'rDipvdKQtaPKy0AIhvua',
+        database: 'railway',
         connectionLimit: 8,
         waitForConnections: true
     });

@@ -27,7 +27,7 @@ router.get("/admin", userController.loginVerifica, async (req, res, next) => {
   if(adm[0].admim == 1){
     var lista = await pizzaController.listaPizza();
     var dados = {lista:lista}
-    console.log(dados)
+    console.log(dados.lista[0].sabores.nome)
     res.render("admin", dados);
   }else{
     res.redirect("/")
