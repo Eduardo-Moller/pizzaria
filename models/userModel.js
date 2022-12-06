@@ -18,9 +18,9 @@ async function login(data) {
 }
 
 async function registro(data) {
-  sql = `INSERT INTO Cliente (nome, email, senha, admim) VALUES ('${data[0]}', '${data[1]}', '${data[2]}', 0)`;
+  sql = `INSERT INTO cliente (nome, email, senha, admim) VALUES ('${data[0]}', '${data[1]}', '${data[2]}', 0)`;
   await mysql.query(sql);
-  sql = `SELECT * FROM Cliente WHERE email = '${data[1]}'`;
+  sql = `SELECT * FROM cliente WHERE email = '${data[1]}'`;
   var usuarios = await mysql.query(sql);
   var nome = usuarios[0].nome;
   var id = usuarios[0].idCliente;
